@@ -1,6 +1,7 @@
 # workouts-mern-app
+An application for creating, listing, and deleting workouts (title, reps, load). 
 
-### Developer Stack: 
+### MERN Stack: 
 
   Backend - Express, MongoDB
   
