@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useWorkoutsContext } from '../hooks/useWorkoutsContext'
 
 import WorkoutDetails from '../components/WorkoutDetails'
-import WorkoutForm from '../components/WorkoutForm'
+import AddWorkoutForm from '../components/AddWorkoutForm'
 
 
 
@@ -31,7 +31,7 @@ const Home = () => {
                 <WorkoutDetails key={workout._id} workout={workout} />
             ))}
         </div>
-        <WorkoutForm />
+        <AddWorkoutForm />
       </div>
     )
   }
