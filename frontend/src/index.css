@@ -56,16 +56,29 @@ header a {
   font-size: 0.9em;
   color: #555;
 }
-.workout-details span {
-  position: absolute;
-  top: 20px;
-  right: 20px;
+.workout-actions {
+  display: flex;
+  gap: 8px;
+ margin-top: 16px; 
+}
+
+.workout-actions button {
   cursor: pointer;
   background: #f1f1f1;
-  padding: 6px;
+  padding: 6px 10px;
   border-radius: 50%;
   color: #333;
+  border: none;
+  font-size: 1.2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
 }
+.workout-actions button:hover {
+  background: #e0e0e0;
+}
+
 
 /* new workout form */
 label, input {
