@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useWorkoutsContext } from '../hooks/useWorkoutsContext'
 
-const AddWorkoutForm = () => {
+const WorkoutForm = () => {
     const {workouts, dispatch} = useWorkoutsContext()
     const [title, setTitle] = useState('')
     const [load, setLoad] = useState('')
@@ -68,4 +68,4 @@ const AddWorkoutForm = () => {
     )
 }
 
-export default AddWorkoutForm
+export default WorkoutForm
