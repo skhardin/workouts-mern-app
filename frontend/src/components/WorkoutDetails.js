@@ -1,6 +1,5 @@
 import { useState } from "react"
 import { useWorkoutsContext } from "../hooks/useWorkoutsContext"
-import WorkoutForm from "./WorkoutForm"
 
 const WorkoutDetails = ({workout}) => {
 
