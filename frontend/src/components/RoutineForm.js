@@ -1,10 +1,9 @@
 import { useState } from 'react'
-import { useRoutinesContext } from '../hooks/useRoutinesContext'
+// import { useRoutinesContext } from '../hooks/useRoutinesContext'
 import { useWorkoutsContext } from '../hooks/useWorkoutsContext'
 
 const RoutineForm = () => {
-    const {routines, routinesDispatch} = useRoutinesContext()
-    const {workouts, workoutsDispatch} = useWorkoutsContext()
+    const {workouts, routines, dispatch} = useWorkoutsContext()
     const [title, setTitle] = useState('')
     const [duration, setDuration] = useState('')
     const [workoutIds, setWorkoutIds] = useState([])
@@ -16,7 +15,7 @@ const RoutineForm = () => {
         e.preventDefault()
 
         const routine = {title, duration, workoutIds, labels}
-
+        console.log("routine", routine)
         const response = await fetch('/api/routines', {
             method: 'POST',
             body: JSON.stringify(routine),
@@ -24,7 +23,7 @@ const RoutineForm = () => {
         })
 
         const json = await response.json()
-
+console.log("json", json)
         if (!response.ok) {
             setError(json.error)
             setEmptyFields(json.emptyFields)
@@ -36,7 +35,7 @@ const RoutineForm = () => {
             setLabels('')
             setEmptyFields([])
             console.log('New routine added: ', json)
-            routinesDispatch({type: 'CREATE_ROUTINE', payload: json})
+            dispatch({type: 'CREATE_ROUTINE', payload: json})
         }
     }
     return (<div>
@@ -59,7 +58,7 @@ const RoutineForm = () => {
              <label>Labels</label>
             <input 
                 type="text"
-                onChange={(e) => {setLabels(e.target.value)}}
+                onChange={(e) => {setLabels([e.target.value])}}
                 value={labels}
                 className={emptyFields.includes('labels') ? 'error': ''}
             />
@@ -84,13 +83,7 @@ const RoutineForm = () => {
             {error && <div className="error">{error}</div>}
 
         </form>
-        <ul>
-        {workouts && workouts.map((workout) => (
-            <li key={workout._id}>
-                {workout.title} - {workout.load}kg x {workout.reps  }
-            </li>
-        ))}
-        </ul>
+    
         </div>
     )
 }

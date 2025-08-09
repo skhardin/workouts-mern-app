@@ -1,13 +1,26 @@
 import { useEffect } from 'react' 
-import { useRoutinesContext } from '../hooks/useRoutinesContext'
+import { useWorkoutsContext } from '../hooks/useWorkoutsContext'
 
 import RoutineCard from '../components/RoutineCard'
 import RoutineForm from '../components/RoutineForm'
 
 const Routines = () => {
-    const { routines, dispatch } = useRoutinesContext()
+    const { workouts, routines, dispatch } = useWorkoutsContext()
 
     useEffect(() => {
+        const fetchWorkouts = async () => {
+            const response = await fetch('/api/workouts')
+            const json = await response.json()
+            console.log("workouts", json)
+
+            if (response.ok) {
+                dispatch({type: 'SET_WORKOUTS', payload: json})
+            }
+        }  
+        fetchWorkouts() 
+     }, [])
+
+     useEffect(() => {
         const fetchRoutines = async () => {
             const response = await fetch('/api/routines')
             const json = await response.json()
@@ -19,14 +32,14 @@ const Routines = () => {
         fetchRoutines() 
      }, [])
 
+
     return (
       <div className="home">
         <div className="routines">
-            {routines && routines.map(routine => (
+            {/* {routines && routines.map(routine => (
                 <RoutineCard key={routine._id} routine={routine} />
-            ))}
+            ))} */}
         </div>
-        {/* <button className="add-routine" onClick={() => window.location.href = '/routine/new'}/> */}
         <RoutineForm />
       </div>
     )
