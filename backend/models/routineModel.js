@@ -1,5 +1,4 @@
 const mongoose = require('mongoose')
-const {Workout, WorkoutSchema} = require('../models/workoutModel')
 
 const Schema = mongoose.Schema
 
@@ -8,8 +7,8 @@ const routineSchema = new Schema({
         type: String,
         required: true
     }, 
-    workouts: {
-        type: [WorkoutSchema],
+    workoutIds: {
+        type: [Schema.Types.ObjectId],
         required: true
     },
     duration: {

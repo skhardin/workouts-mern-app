@@ -8,10 +8,10 @@ export const routinesReducer = (state, action) => {
       return {
         routines: action.payload
       }
-    // case 'CREATE_ROUTINE':
-    //   return {
-    //     routines: [action.payload, ...state.routines]
-    //   }
+    case 'CREATE_ROUTINE':
+      return {
+        routines: [action.payload, ...state.routines]
+      }
     // case 'PATCH_ROUTINE': 
     //   return {
     //     routines: state.routines.map((r) => {
@@ -26,3 +26,16 @@ export const routinesReducer = (state, action) => {
       return state
   }
 }   
+
+export const RoutinesContextProvider = ({children}) => {
+
+    const [state, dispatch] = useReducer(routinesReducer, {
+        routines: null
+    })
+
+    return (
+        <RoutinesContext.Provider value={{...state, dispatch}}>
+            { children }
+        </RoutinesContext.Provider>
+    )
+}

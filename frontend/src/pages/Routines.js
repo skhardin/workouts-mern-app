@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useRoutinesContext } from '../hooks/useRoutinesContext'
 
 import RoutineCard from '../components/RoutineCard'
+import RoutineForm from '../components/RoutineForm'
 
 const Routines = () => {
     const { routines, dispatch } = useRoutinesContext()
@@ -25,6 +26,8 @@ const Routines = () => {
                 <RoutineCard key={routine._id} routine={routine} />
             ))}
         </div>
+        {/* <button className="add-routine" onClick={() => window.location.href = '/routine/new'}/> */}
+        <RoutineForm />
       </div>
     )
 }

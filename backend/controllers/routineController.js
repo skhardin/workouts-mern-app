@@ -2,18 +2,18 @@ const Routine = require('../models/routineModel')
 const mongoose = require('mongoose')
 
 const createRoutine = async (req, res) => {
-    const { title, workouts, duration, labels } = req.body
+    const { title, workoutIds, duration, labels } = req.body
     
     let emptyFields = []
 
     if (!title) { emptyFields.push('title') }
-    if (!workouts || workouts.length === 0) { emptyFields.push('workouts') }
+    if (!workoutIds || workoutIds.length === 0) { emptyFields.push('workoutIds') }
     if (duration === undefined) { emptyFields.push('duration') }
 
     if(emptyFields.length > 0) { return res.status(400).json({error: 'All fields must be non-empty.', emptyFields})}
 
     try {
-        const routine = await Routine.create({ title, workouts, duration, labels })
+        const routine = await Routine.create({ title, workoutIds, duration, labels })
         res.status(201).json(routine)
     } catch (error) {
         res.status(400).json({error: error.message})
