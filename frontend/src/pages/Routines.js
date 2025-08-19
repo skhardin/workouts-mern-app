@@ -11,7 +11,6 @@ const Routines = () => {
         const fetchWorkouts = async () => {
             const response = await fetch('/api/workouts')
             const json = await response.json()
-            console.log("workouts", json)
 
             if (response.ok) {
                 dispatch({type: 'SET_WORKOUTS', payload: json})
@@ -36,9 +35,9 @@ const Routines = () => {
     return (
       <div className="home">
         <div className="routines">
-            {/* {routines && routines.map(routine => (
+            {routines && routines.map(routine => (
                 <RoutineCard key={routine._id} routine={routine} />
-            ))} */}
+            ))} 
         </div>
         <RoutineForm />
       </div>

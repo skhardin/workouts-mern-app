@@ -1,6 +1,6 @@
 const express = require('express')
 // const { createRoutine, findRoutineById, findAllRoutines, deleteRoutine, updateRoutine } = require('../controllers/routineController')
-const { createRoutine, findRoutineById, findAllRoutines } = require('../controllers/routineController')
+const { createRoutine, findRoutineById, findAllRoutines, deleteRoutine } = require('../controllers/routineController')
 
 
 const router = express.Router()
@@ -15,7 +15,7 @@ router.get('/:id', findRoutineById)
 router.post('/', createRoutine)
 
 // DELETE a Routine by id
-// router.delete('/:id', deleteRoutine)
+router.delete('/:id', deleteRoutine)
 
 // // PATCH a Routine by id
 // router.patch('/:id', updateRoutine)

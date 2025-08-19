@@ -1,10 +1,11 @@
 import { useState } from 'react'
-import { useRoutinesContext } from '../hooks/useRoutinesContext'
+import { useWorkoutsContext } from '../hooks/useWorkoutsContext'
 
 
 const RoutineCard = ({ routine }) => {
-    const { routines, dispatch } = useRoutinesContext()
+    const { workouts, routines, dispatch } = useWorkoutsContext()
     const [error, setError] = useState(null)
+    const selectedWorkouts = routine.workoutIds.map(id => workouts.find(workout => workout._id === id))
 
     // const handleUpdate = async (e) => {
     //     e.preventDefault()
@@ -47,12 +48,13 @@ const RoutineCard = ({ routine }) => {
                     <h3>{routine.title}</h3>
                     <p>Duration: {routine.duration} minutes</p>
                     <details>
+                        <summary>Workouts</summary>
                         <ul>
-                            {routine.workouts.map((workout, index) => (
-                                <li key={index}>
-                                    {workout.title} - {workout.load}kg, {workout.reps} reps
+                            {selectedWorkouts.map(workout => (  
+                                <li key={workout._id}>
+                                    <strong>{workout.title}</strong>
                                 </li>
-                            ))} 
+                            ))}
                         </ul>
                     </details>
                     <div>
@@ -60,8 +62,8 @@ const RoutineCard = ({ routine }) => {
                             <span key={label} className="label">{label}</span>))}
                     </div>
                 </div>
-                <a href={`/routine/${routine._id}`}>Go To Routine</a>
-                <button className="delete" onClick={handleDelete}>Delete Routine</button>
+                {/* <a href={`/routine/${routine._id}`}>Go To Routine</a> */}
+                <button className="material-symbols-outlined" onClick={handleDelete}>delete</button>
         </div>
     )
 }

@@ -37,6 +37,20 @@ const findRoutineById = async (req, res) => {
     res.status(200).json(routine)
 }
 
+const deleteRoutine = async (req, res) => {
+    const {id} = req.params
+
+    if(!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(400).json({error: 'Bad request - invalid id'})
+    }
+
+    const routine = await Routine.findOneAndDelete({_id: id})
+
+    if (!routine) return res.status(404).json('Routine not found')
+
+    res.status(200).json(routine)
+}
+
 module.exports = { 
-    createRoutine, findAllRoutines, findRoutineById
+    createRoutine, findAllRoutines, findRoutineById, deleteRoutine
 }
