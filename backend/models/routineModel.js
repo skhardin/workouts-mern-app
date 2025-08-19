@@ -2,23 +2,23 @@ const mongoose = require('mongoose')
 
 const Schema = mongoose.Schema
 
-const workoutSchema = new Schema({
+const routineSchema = new Schema({
     title: {
         type: String,
         required: true
     }, 
-    load: {
+    workoutIds: {
+        type: [Schema.Types.ObjectId],
+        required: true
+    },
+    duration: {
         type: Number,
         required: true
     },
-    reps: {
-        type: Number,
-        required: true
+    labels: {
+        type: [String],
+        required: false
     }
 }, { timestamps: true })
 
-const Workout = mongoose.model('Workout', workoutSchema)
-
-module.exports = { Workout,
-    workoutSchema
-}
+module.exports = mongoose.model('Routine', routineSchema)
